@@ -1,1 +1,3 @@
-# KotlinApp
+# Tanuki
+
+Budgetting-budy app!
