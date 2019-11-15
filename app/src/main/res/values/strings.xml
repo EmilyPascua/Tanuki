@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Tanuki</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    fragment_finance_header
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_finance_header">Hello Finance fragment</string>
+    <string name="fragment_calendar_header">Hello Calendar fragment</string>
+    <string name="fragment_activity_feed_header">Hello Activity Feed fragment</string>
 </resources>
