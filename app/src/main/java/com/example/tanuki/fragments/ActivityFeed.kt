@@ -8,6 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.tanuki.R
+import com.example.tanuki.Adapter
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +32,10 @@ class ActivityFeed : Fragment() {
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    private lateinit var viewManager: RecyclerView.LayoutManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -41,7 +49,23 @@ class ActivityFeed : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        viewManager = LinearLayoutManager(activity)
+        //fill adapter with data, can't do so because the database hasn't been implemented yet
+//        viewAdapter = Adapter(/*myDataset*/)
+//        recyclerView = view.findViewById<RecyclerView>(R.id./*id*/).apply {
+//            // use this setting to improve performance if you know that changes
+//            // in content do not change the layout size of the RecyclerView
+//            setHasFixedSize(true)
+//
+//            // use a linear layout manager
+//            layoutManager = viewManager
+//
+//            // specify an viewAdapter (see also next example)
+//            adapter = viewAdapter
+//        }
         return inflater.inflate(R.layout.fragment_activity_feed, container, false)
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
