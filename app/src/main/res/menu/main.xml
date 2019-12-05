@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/feed_tab"
-        android:orderInCategory="100"
-        android:title="@string/feed_title"
-        android:icon="@drawable/feed_icon"
-        android:width="100dp"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/finances_tab"
-        android:orderInCategory="200"
-        android:icon="@drawable/finance_icon"
-        android:title="@string/finances_title"
-        android:width="100dp"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/calendar_tab"
-        android:orderInCategory="300"
-        android:icon="@drawable/calendar_icon"
-        android:title="@string/calendar_title"
-        app:showAsAction="always" />
+<!--    <item-->
+<!--        android:id="@+id/feed_tab"-->
+<!--        android:orderInCategory="100"-->
+<!--        android:title="@string/feed_title"-->
+<!--        android:icon="@drawable/feed_icon"-->
+<!--        android:width="100dp"-->
+<!--        app:showAsAction="always" />-->
+<!--    <item-->
+<!--        android:id="@+id/finances_tab"-->
+<!--        android:orderInCategory="200"-->
+<!--        android:icon="@drawable/finance_icon"-->
+<!--        android:title="@string/finances_title"-->
+<!--        android:width="100dp"-->
+<!--        app:showAsAction="always" />-->
+<!--    <item-->
+<!--        android:id="@+id/calendar_tab"-->
+<!--        android:orderInCategory="300"-->
+<!--        android:icon="@drawable/calendar_icon"-->
+<!--        android:title="@string/calendar_title"-->
+<!--        app:showAsAction="always" />-->
 </menu>

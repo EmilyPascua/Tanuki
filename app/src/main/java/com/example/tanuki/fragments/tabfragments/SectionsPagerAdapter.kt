@@ -4,15 +4,16 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.tanuki.R
 import com.example.tanuki.fragments.tabfragments.ActivityFeed
 import com.example.tanuki.fragments.tabfragments.Calendar
 import com.example.tanuki.fragments.tabfragments.Finance
 
-//private val TAB_TITLES = arrayOf(
-//    R.string.feed_title,
-//    R.string.finances_title,
-//    R.string.calendar_title
-//)
+private val TAB_TITLES = arrayOf(
+    R.string.feed_title,
+    R.string.finances_title,
+    R.string.calendar_title
+)
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

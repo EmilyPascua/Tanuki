@@ -23,7 +23,15 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.navigation.NavController
+import androidx.viewpager.widget.ViewPager
+import com.example.tanuki.fragments.tabfragments.SectionsPagerAdapter
+import com.google.android.material.tabs.TabLayout
 
+private val TAB_ICONS = arrayOf(
+    R.drawable.feed_icon,
+    R.drawable.finance_icon,
+    R.drawable.calendar_icon
+)
 
 class MainActivity : AppCompatActivity() {
     // The main activity will lead to the following pages:
@@ -47,6 +55,23 @@ class MainActivity : AppCompatActivity() {
         // set title to false so that the title does not appear in the toolbar
         supportActionBar!!.setDisplayShowTitleEnabled(false)
 
+        drawerNavSetup()
+        sectionsPagerSetup()
+    }
+
+    fun sectionsPagerSetup() {
+        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+        val viewPager: ViewPager = findViewById(R.id.view_pager)
+        viewPager.adapter = sectionsPagerAdapter
+        val tabs: TabLayout = findViewById(R.id.tabs)
+        tabs.setupWithViewPager(viewPager)
+
+        tabs.getTabAt(0)!!.setIcon(TAB_ICONS[0])
+        tabs.getTabAt(1)!!.setIcon(TAB_ICONS[1])
+        tabs.getTabAt(2)!!.setIcon(TAB_ICONS[2])
+    }
+
+    fun drawerNavSetup() {
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
         navController = findNavController(R.id.nav_host_fragment)
@@ -62,31 +87,31 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        val id = item.getItemId()
-
-        if (id == R.id.feed_tab) {
-            navController.navigate(R.id.tab_feed)
-            Toast.makeText(this,"Feed Tab",Toast.LENGTH_SHORT).show()
-            return true
-        }
-        else if (id == R.id.finances_tab) {
-            navController.navigate(R.id.tab_finance)
-            Toast.makeText(this,"Finance Tab",Toast.LENGTH_SHORT).show()
-            return true
-        }
-        else if (id == R.id.calendar_tab) {
-            navController.navigate(R.id.tab_calendar)
-            Toast.makeText(this,"Calendar Tab",Toast.LENGTH_SHORT).show()
-            return true
-        }
-        else {
-            return false
-        }
-    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        val id = item.getItemId()
+//
+//        if (id == R.id.feed_tab) {
+//            navController.navigate(R.id.tab_feed)
+//            Toast.makeText(this,"Feed Tab",Toast.LENGTH_SHORT).show()
+//            return true
+//        }
+//        else if (id == R.id.finances_tab) {
+//            navController.navigate(R.id.tab_finance)
+//            Toast.makeText(this,"Finance Tab",Toast.LENGTH_SHORT).show()
+//            return true
+//        }
+//        else if (id == R.id.calendar_tab) {
+//            navController.navigate(R.id.tab_calendar)
+//            Toast.makeText(this,"Calendar Tab",Toast.LENGTH_SHORT).show()
+//            return true
+//        }
+//        else {
+//            return false
+//        }
+//    }
 
     override fun onBackPressed() {
         val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
