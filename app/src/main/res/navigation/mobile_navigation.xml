@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.tanuki.fragments.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+<!--    <fragment-->
+<!--        android:id="@+id/tab_feed"-->
+<!--        android:name="com.example.tanuki.fragments.tabfragments.ActivityFeed"-->
+<!--        android:label="@string/feed_title"-->
+<!--        tools:layout="@layout/fragment_activity_feed" />-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/tab_finance"-->
+<!--        android:name="com.example.tanuki.fragments.tabfragments.Finance"-->
+<!--        android:label="@string/finances_title"-->
+<!--        tools:layout="@layout/fragment_finance" />-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/tab_calendar"-->
+<!--        android:name="com.example.tanuki.fragments.tabfragments.Calendar"-->
+<!--        android:label="@string/calendar_title"-->
+<!--        tools:layout="@layout/fragment_calendar" />-->
+</navigation>

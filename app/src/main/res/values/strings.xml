@@ -4,7 +4,27 @@
     <!-- TODO: Remove or change this placeholder text -->
     fragment_finance_header
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--main menu strings-->
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+
+    <!-- TabLayout Definition -->
+    <string name="finances_title">Finaces</string>
     <string name="fragment_finance_header">Hello Finance fragment</string>
+    <string name="calendar_title">Calendar</string>
     <string name="fragment_calendar_header">Hello Calendar fragment</string>
+    <string name="feed_title">Feed</string>
     <string name="fragment_activity_feed_header">Hello Activity Feed fragment</string>
+    <string name="drawer_toggle_title">Drawer Toggle</string>
+
+    <!-- Drawer Definitions -->
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
 </resources>
