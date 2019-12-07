@@ -8,9 +8,13 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home_black_24dp"
             android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_test"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Test" />
     </group>
 
-    <item android:title="Communicate">
+<!--    <item android:title="Communicate">-->
 <!--        <menu>-->
 <!--            <item-->
 <!--                android:id="@+id/nav_share"-->
@@ -21,6 +25,6 @@
 <!--                android:icon="@drawable/ic_menu_send"-->
 <!--                android:title="@string/menu_send" />-->
 <!--        </menu>-->
-    </item>
+<!--    </item>-->
 
 </menu>
