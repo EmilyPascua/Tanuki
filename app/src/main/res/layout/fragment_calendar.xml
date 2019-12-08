@@ -6,18 +6,26 @@
     tools:context=".fragments.tabfragments.Calendar"
     android:background="@color/colorGrey">
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
         android:orientation="vertical">
         <CalendarView
             android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_border" />
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/rounded_border"
-            />
+            android:text="@string/calendar_Upcoming"
+            android:textSize="20dp"></TextView>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            ></androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 </FrameLayout>

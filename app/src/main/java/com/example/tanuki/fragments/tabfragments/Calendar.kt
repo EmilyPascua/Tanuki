@@ -1,16 +1,17 @@
 package com.example.tanuki.fragments.tabfragments
 
 import android.os.Bundle
+import android.util.JsonReader
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CalendarView
-import android.widget.TextView
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
 import com.example.tanuki.R
+import com.example.tanuki.model.PaymentEntity
+import com.google.gson.Gson
+import java.io.FileReader
 
 class Calendar : Fragment() {
     private lateinit var pageViewModel: PageViewModel
@@ -27,6 +28,9 @@ class Calendar : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_calendar, container, false)
+        val gson = Gson()
+        val reader = JsonReader(FileReader(filePath))
+        var mPaymentEntity = gson.fromJson(reader, PaymentEntity.Payment::class.java)
 
         return root
     }
