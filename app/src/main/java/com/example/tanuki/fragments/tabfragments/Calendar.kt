@@ -28,9 +28,9 @@ class Calendar : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_calendar, container, false)
-        val gson = Gson()
-        val reader = JsonReader(FileReader(filePath))
-        var mPaymentEntity = gson.fromJson(reader, PaymentEntity.Payment::class.java)
+        //val gson = Gson()
+        //val reader = JsonReader(FileReader(filePath))
+        //var mPaymentEntity = gson.fromJson(reader, PaymentEntity.Payment::class.java)
 
         return root
     }
