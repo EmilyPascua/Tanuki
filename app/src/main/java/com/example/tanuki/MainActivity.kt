@@ -3,6 +3,8 @@ package com.example.tanuki
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 
 //drawer
 import com.google.android.material.navigation.NavigationView
@@ -30,7 +32,7 @@ private val TAB_ICONS = arrayOf(
 class MainActivity : AppCompatActivity() {
     // The main activity will lead to the following pages:
     // 1. Feed
-    // 2. Calendar
+    // 2. CalendarFragment
     // 3. The "chat" - or finances
     // These are all fragments as they will inherit the same navigation bar
 
@@ -82,31 +84,23 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        val id = item.getItemId()
-//
-//        if (id == R.id.feed_tab) {
-//            navController.navigate(R.id.tab_feed)
-//            Toast.makeText(this,"Feed Tab",Toast.LENGTH_SHORT).show()
-//            return true
-//        }
-//        else if (id == R.id.finances_tab) {
-//            navController.navigate(R.id.tab_finance)
-//            Toast.makeText(this,"Finance Tab",Toast.LENGTH_SHORT).show()
-//            return true
-//        }
-//        else if (id == R.id.calendar_tab) {
-//            navController.navigate(R.id.tab_calendar)
-//            Toast.makeText(this,"Calendar Tab",Toast.LENGTH_SHORT).show()
-//            return true
-//        }
-//        else {
-//            return false
-//        }
-//    }
+    //this functions allows for navigation between fragments via the appbar
+    //if there is an item on the appbar then you can use function to navigate to a specifiv
+    //fragment. Define the fragments in the navigation/mobile.navigation
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        val id = item.getItemId()
+
+        if (id == R.id.chat_item) {
+            navController.navigate(R.id.tab_chat)
+            return true
+        }
+        else {
+            return false
+        }
+    }
 
     override fun onBackPressed() {
         val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
@@ -120,6 +114,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
+
         return true
     }
 
