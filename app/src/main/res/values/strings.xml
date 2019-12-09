@@ -27,4 +27,13 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+    <string name="new_username" />
+    <string name="new_password" />
+    <string name="username_text_value" />
+    <string name="password" />
+    <string name="login_button">Login</string>
+    <string name="register_link">Dont have an account? Click here</string>
+    <string name="firebase_login">Firebase Login</string>
+    <string name="login_with_google">Log In With Google</string>
+    <string name="logout">Logout</string>
 </resources>

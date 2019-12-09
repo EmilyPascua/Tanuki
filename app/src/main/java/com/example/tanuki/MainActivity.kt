@@ -1,5 +1,7 @@
 package com.example.tanuki
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -22,10 +24,13 @@ import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.viewpager.widget.ViewPager
+import com.example.tanuki.databinding.ActivityMainBinding
 import com.example.tanuki.fragments.tabfragments.SectionsPagerAdapter
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.auth.FirebaseAuth
 
 private val TAB_ICONS = arrayOf(
     R.drawable.feed_icon,
@@ -44,10 +49,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navView: NavigationView
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var mainElements: ActivityMainBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        mainElements = DataBindingUtil.setContentView(this,R.layout.activity_main)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -57,8 +64,26 @@ class MainActivity : AppCompatActivity() {
 
         drawerNavSetup()
         sectionsPagerSetup()
+//        setupUI()
     }
 
+//    private fun setupUI() {
+//        mainElements.logout.setOnClickListener {
+//            signOut()
+//        }
+//    }
+
+    private fun signOut() {
+        startActivity(Intent(this,Login::class.java))
+        FirebaseAuth.getInstance().signOut();
+        finish()
+    }
+
+    companion object {
+        fun getLaunchIntent(from: Context) = Intent(from, MainActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        }
+    }
     fun sectionsPagerSetup() {
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
         val viewPager: ViewPager = findViewById(R.id.view_pager)
