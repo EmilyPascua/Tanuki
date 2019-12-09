@@ -1,16 +1,16 @@
 package com.example.tanuki.model
 
+import java.util.*
+
 class PaymentEntity {
     data class Payment(
         val id: Int,
-        val month: Int,
-        val day: Int,
-        val year: Int,
+        val date: Date,
         val payment: Double,
         val type: String,
 
-        val iconStr: String,
-        val backgroundStr: String,
+        val iconStr: Int,
+        val backgroundStr: Int,
 
         val isBill: Boolean
     )

@@ -1,0 +1,54 @@
+{
+  "calendar_items": [
+    {
+      "id": 0,
+      "month": "December",
+      "day": 6,
+      "year": 2019,
+      "icon_str": "wifi_foreground",
+      "background_str": "wifi_background",
+      "type": "Internet",
+      "is_bill": "True"
+    },
+    {
+      "id": 1,
+      "month": "December",
+      "day": 6,
+      "year": 2019,
+      "icon_str": "phone_background",
+      "background_str": "phone_background",
+      "type": "Phone",
+      "is_bill": "True"
+    },
+    {
+      "id": 2,
+      "month": "December",
+      "day": 20,
+      "year": 2019,
+      "icon_str": "house_foreground",
+      "background_str": "house_background",
+      "type": "Water & Power",
+      "is_bill": "True"
+    },
+    {
+      "id": 3,
+      "month": "December",
+      "day": 21,
+      "year": 2019,
+      "icon_str": "car_foreground",
+      "background_str": "car_background",
+      "type": "Car",
+      "is_bill": "True"
+    },
+    {
+      "id": 4,
+      "month": "January",
+      "day": 6,
+      "year": 2020,
+      "icon_str": "wifi_foreground",
+      "background_str": "wifi_background",
+      "type": "Internet",
+      "is_bill": "True"
+    }
+  ]
+}

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
     android:background="@drawable/rounded_border"
     >
     <LinearLayout
@@ -12,7 +13,7 @@
         android:orientation="horizontal">
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_image"
+            android:id="@+id/calendar_icon"
             app:civ_circle_background_color="@color/colorAccent"
             android:layout_width="70dp"
             android:layout_height="70dp"
