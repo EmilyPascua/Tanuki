@@ -44,14 +44,18 @@ class ChatFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         var act = (activity as AppCompatActivity)
-
+        println("ON RESUME!!!!!!!!!!!!!!!!!!")
         act.findViewById<TabLayout>(R.id.tabs).setVisibility(View.GONE)
     }
 
     override fun onStop() {
         super.onStop()
         var act = (activity as AppCompatActivity)
-        act.supportActionBar!!.setDisplayShowTitleEnabled(false)
+        println("ON STOP!!!!!!!!!!!!!!!!!!")
         act.findViewById<TabLayout>(R.id.tabs).setVisibility(View.VISIBLE)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }
