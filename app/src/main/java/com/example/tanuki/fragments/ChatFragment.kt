@@ -11,10 +11,12 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.tanuki.R
 import com.google.android.material.tabs.TabLayout
 
-
+import androidx.recyclerview.widget.RecyclerView
+import com.example.tanuki.fragments.tabfragments.PageViewModel
 
 class ChatFragment : Fragment() {
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var pageViewModel : PageViewModel
+    private lateinit var chatHistory : RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +28,8 @@ class ChatFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
+        pageViewModel =
+            ViewModelProviders.of(this).get(PageViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_chat, container, false)
 //        val textView: TextView = root.findViewById(R.id.text_home)
 //        homeViewModel.text.observe(this, Observer {
