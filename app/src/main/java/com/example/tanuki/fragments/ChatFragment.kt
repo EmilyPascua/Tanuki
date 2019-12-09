@@ -7,15 +7,15 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
 import com.example.tanuki.R
 import com.google.android.material.tabs.TabLayout
+import android.view.MenuInflater
+
+
 
 
 
 class ChatFragment : Fragment() {
-    private lateinit var homeViewModel: HomeViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -26,8 +26,6 @@ class ChatFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_chat, container, false)
 //        val textView: TextView = root.findViewById(R.id.text_home)
 //        homeViewModel.text.observe(this, Observer {
@@ -46,13 +44,14 @@ class ChatFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         var act = (activity as AppCompatActivity)
+
         act.findViewById<TabLayout>(R.id.tabs).setVisibility(View.GONE)
     }
 
     override fun onStop() {
         super.onStop()
-
         var act = (activity as AppCompatActivity)
+        act.supportActionBar!!.setDisplayShowTitleEnabled(false)
         act.findViewById<TabLayout>(R.id.tabs).setVisibility(View.VISIBLE)
     }
 }
