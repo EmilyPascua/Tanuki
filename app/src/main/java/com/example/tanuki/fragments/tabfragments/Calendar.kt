@@ -44,7 +44,7 @@ class Calendar : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_calendar, container, false)
         val testDataHashmap = Data().getCalendarSortedByDate()
-        val sdf = SimpleDateFormat("mm-dd-yyyy")
+        val sdf = SimpleDateFormat("MM-dd-yyyy")
         // Text View if No items exists
         noneExist = root.findViewById(R.id.calendar_information)
         // Calendar
@@ -74,6 +74,7 @@ class Calendar : Fragment() {
         calendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
             val date = Date(year,month,dayOfMonth)
             val paymentsForCertainDay = testDataHashmap.get(sdf.format(date))
+            System.out.println()
             if(paymentsForCertainDay != null){
                 calendarList.setVisibility(View.VISIBLE)
                 noneExist.setVisibility(View.GONE)

@@ -25,11 +25,6 @@ class ActivityFeed : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_activity_feed, container, false)
-        val textView: TextView = root.findViewById(R.id.activity_feed_text)
-        pageViewModel.text.observe(this, Observer<String> {
-            textView.text = "ACTIVITYFEED!"
-        })
-
         return root
     }
 

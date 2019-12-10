@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/rounded_border"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/finance_usericon"
+            app:civ_circle_background_color="@color/colorAccent"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:src="@drawable/ic_network_wifi_black_24dp"
+            android:layout_margin="10dp"></de.hdodenhof.circleimageview.CircleImageView>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_toRightOf="@+id/finance_usericon"
+            android:layout_margin="10dp">
+            <!-- Amount due -->
+            <TextView
+                android:id="@+id/finance_bill_or_spending"
+                android:text="You spent "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+            <!-- Due date -->
+            <TextView
+                android:id="@+id/finance_amount"
+                android:text="$25.00"
+                android:textColor="#b80f0f"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+            <TextView
+                android:id="@+id/finance_type"
+                android:text=" on food!"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right">
+            </TextView>
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/finance_date"
+            android:text="December 6, 2019"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:padding="20px"></TextView>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
