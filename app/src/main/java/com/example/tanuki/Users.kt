@@ -1,5 +1,20 @@
 package com.example.tanuki
 
-class Users (val name: String, val id: Int, var weeklyBudget: Float, var monthlyBudget: Float) {
+import com.google.firebase.database.DataSnapshot
 
+class Users  {
+    var name: String? = null
+    var uid: String? = null
+    var idToken: String? = null
+    var weeklyBudget: Float? = null
+    var monthlyBudget: Float? = null
+
+    constructor(name: String, uid: String, idToken: String, weeklyBudget: Float, monthlyBudget: Float) {
+        this.name = name
+        this.uid = uid
+        this.idToken = idToken
+        this.weeklyBudget = weeklyBudget
+        this.monthlyBudget = monthlyBudget
+    }
 }
+
