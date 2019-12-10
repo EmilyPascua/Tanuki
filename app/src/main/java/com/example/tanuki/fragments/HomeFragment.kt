@@ -26,15 +26,19 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+
         var act = (activity as AppCompatActivity)
+
         println("ON RESUME!!!!!!!!!!!!!!!!!!")
         act.findViewById<ViewPager>(R.id.view_pager).setVisibility(View.VISIBLE)
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onPause() {
+        super.onPause()
+
         var act = (activity as AppCompatActivity)
-        println("ON STOP!!!!!!!!!!!!!!!!!!")
+
+        println("ON PAUSE!!!!!!!!!!!!!!!!!!")
         act.findViewById<ViewPager>(R.id.view_pager).setVisibility(View.GONE)
     }
 }
