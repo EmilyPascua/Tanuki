@@ -10,26 +10,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.example.tanuki.R
 import com.google.android.material.tabs.TabLayout
+import android.view.MenuInflater
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tanuki.fragments.tabfragments.PageViewModel
 
 class ChatFragment : Fragment() {
-    private lateinit var pageViewModel : PageViewModel
+    private lateinit var homeViewModel : HomeViewModel
     private lateinit var chatHistory : RecyclerView
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        pageViewModel =
-            ViewModelProviders.of(this).get(PageViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_chat, container, false)
 //        val textView: TextView = root.findViewById(R.id.text_home)
 //        homeViewModel.text.observe(this, Observer {
@@ -48,13 +42,18 @@ class ChatFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         var act = (activity as AppCompatActivity)
+        println("ON RESUME!!!!!!!!!!!!!!!!!!")
         act.findViewById<TabLayout>(R.id.tabs).setVisibility(View.GONE)
     }
 
     override fun onStop() {
         super.onStop()
-
         var act = (activity as AppCompatActivity)
+        println("ON STOP!!!!!!!!!!!!!!!!!!")
         act.findViewById<TabLayout>(R.id.tabs).setVisibility(View.VISIBLE)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }
