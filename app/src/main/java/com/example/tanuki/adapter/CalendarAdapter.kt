@@ -3,14 +3,12 @@ package com.example.tanuki.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import com.example.tanuki.R
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tanuki.fragments.tabfragments.Calendar
 import com.example.tanuki.model.PaymentEntity
-import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.calendar_item.view.*
+import java.text.SimpleDateFormat
 
 class CalendarAdapter(private val billsin: ArrayList<PaymentEntity.Payment>) : RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>() {
 
@@ -34,9 +32,12 @@ class CalendarAdapter(private val billsin: ArrayList<PaymentEntity.Payment>) : R
         fun bind(payment: PaymentEntity.Payment) {
             itemView.calendar_icon.setImageResource(payment.iconStr)
             itemView.calendar_icon.setCircleBackgroundColorResource(payment.backgroundStr)
+            itemView.calendar_icon.borderColor = payment.backgroundStr
             itemView.calendar_item_header.text = payment.type + " Bill"
-            itemView.calendar_item_amount.text = "$" + payment.payment
-            itemView.calendar_item_date.text = "" + payment.date
+            itemView.calendar_item_amount.text = "Amount Due: $" + payment.payment
+            val sdf = SimpleDateFormat("MM/dd/yy")
+
+            itemView.calendar_item_date.text = "Due Date: " + sdf.format(payment.date)
         }
 
     }
