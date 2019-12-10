@@ -30,5 +30,6 @@
 
     <!-- Calendar Fragment -->
     <string name="calendar_Upcoming">Upcoming Payments</string>
+    <string name="calendar_no_upcoming">No bills due! </string>
 
 </resources>
