@@ -32,4 +32,7 @@
     <string name="calendar_Upcoming">Upcoming Payments</string>
     <string name="calendar_no_upcoming">No bills due! </string>
 
+    <!-- TITLES -->
+    <string name="profile_title">Profile</string>
+
 </resources>
