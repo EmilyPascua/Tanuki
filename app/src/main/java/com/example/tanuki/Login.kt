@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.tanuki.databinding.ActivityLoginBinding
+import com.example.tanuki.model.User
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -14,11 +15,15 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
 class Login : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseDatabase
     private lateinit var loginElements: ActivityLoginBinding
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var gso: GoogleSignInOptions
@@ -33,6 +38,8 @@ class Login : AppCompatActivity() {
         loginElements = DataBindingUtil.setContentView(this,R.layout.activity_login)
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance()
+
         //instantiating GoogleSignInOptions object -> Specifies your sign in scope and to crate a google api
         // Configure Google Sign In
         gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -47,7 +54,9 @@ class Login : AppCompatActivity() {
     }
 
     private fun signIn() {
+        Log.d("signIn", "Sign in client started")
         val signInIntent = googleSignInClient.signInIntent
+        Log.d("signIn", "start Activity Result")
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
@@ -56,7 +65,9 @@ class Login : AppCompatActivity() {
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
+            Log.d("onActivityResult","passed request code check")
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 val account = task.getResult(ApiException::class.java)
@@ -71,9 +82,13 @@ class Login : AppCompatActivity() {
 
     public override fun onStart() {
         super.onStart()
+        getUsers()
+
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
+
         if (currentUser != null) {
+            Log.d("onStart", "user not null")
             updateUI(currentUser)
         }
     }
@@ -89,9 +104,10 @@ class Login : AppCompatActivity() {
                     Log.d(TAG, "signInWithCredential:success")
                     val currentUsr = auth.currentUser
                     val personName = acct.displayName
-                    val idToken = acct.idToken
-                        saveUser(currentUsr, personName!!, idToken!!)
-                        updateUI(currentUsr)
+                    val email = acct.email
+
+                    saveUser(currentUsr, personName!!, email!!)
+                    updateUI(currentUsr)
                 }
                 else {
                     // If sign in fails, display a message to the user.
@@ -108,12 +124,72 @@ class Login : AppCompatActivity() {
             finish()
     }
 
-    private fun saveUser(currentUser: FirebaseUser?, name: String, idToken: String) {
-        val uid = FirebaseAuth.getInstance().uid?:""
-        val ref = FirebaseDatabase.getInstance().getReference("Users/$uid")
-//      create user object
-        val userObject = Users(name, uid, idToken, 0.toFloat(), 0.toFloat())
-        ref.setValue(userObject)
+    private fun saveUser(currentUser: FirebaseUser?, name: String, email: String) {
+        Log.d("saveUser method","checking if this method runs")
+        val usersRef = database.getReference("User")
+        val query = usersRef.orderByKey()
+
+        val uid = currentUser!!.uid
+
+
+        val listener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val list: ArrayList<String> = ArrayList()
+
+                // Get Post object and use the values to update the UI
+                dataSnapshot.children.forEach{
+                    Log.d("saveUser method","query loop")
+                    list.add(it.key!!)
+                }
+
+                if (!list.contains(uid)) {
+                    val userObject = User(
+                        name,
+                        uid,
+                        email,
+                        0.toFloat(),
+                        0.toFloat()
+                    )
+                    usersRef.child(uid).setValue(userObject)
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+                // ...
+            }
+        }
+        query.addListenerForSingleValueEvent(listener)
+    }
+
+    private fun getUsers(): Boolean {
+        Log.d("getUsers","should start")
+        val usersRef = database.getReference("Users")
+        val query = usersRef.orderByKey()
+
+
+        val listener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // Get Post object and use the values to update the UI
+                dataSnapshot.children.forEach{
+                    Log.d("getUsers","get users")
+                    val list: ArrayList<User> = ArrayList()
+
+                    list.add(it.getValue(User::class.java)!!)
+                }
+
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+                // ...
+            }
+        }
+        query.addListenerForSingleValueEvent(listener)
+
+        return true
     }
 }
 
