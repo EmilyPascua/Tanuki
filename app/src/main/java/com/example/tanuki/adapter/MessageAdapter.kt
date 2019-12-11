@@ -7,16 +7,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.tanuki.App
+import com.example.tanuki.R
+import com.example.tanuki.model.PaymentEntity
 import kotlinx.android.synthetic.main.my_message.view.*
 import kotlinx.android.synthetic.main.other_message.view.*
 
 private const val VIEW_TYPE_MY_MESSAGE = 1
 private const val VIEW_TYPE_OTHER_MESSAGE = 2
 
-class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHolder>() {
-    private val messages: ArrayList<Message> = ArrayList()
+open class MessageViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+    open fun bind(message:PaymentEntity) {}
+}
 
-    fun addMessage(message: Message){
+class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHolder>() {
+    private val messages: ArrayList<PaymentEntity> = ArrayList()
+
+    fun addMessage(message: PaymentEntity){
         messages.add(message)
         notifyDataSetChanged()
     }
@@ -54,7 +61,7 @@ class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHo
         private var messageText: TextView = view.txtMyMessage
         private var timeText: TextView = view.txtMyMessageTime
 
-        override fun bind(message: Message) {
+        override fun bind(message: PaymentEntity) {
             messageText.text = message.message
             timeText.text = DateUtils.fromMillisToTimeString(message.time)
         }
@@ -65,7 +72,7 @@ class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHo
         private var userText: TextView = view.txtOtherUser
         private var timeText: TextView = view.txtOtherMessageTime
 
-        override fun bind(message: Message) {
+        override fun bind(message: PaymentEntity) {
             messageText.text = message.message
             userText.text = message.user
             timeText.text = DateUtils.fromMillisToTimeString(message.time)
@@ -73,6 +80,3 @@ class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHo
     }
 }
 
-open class MessageViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-    open fun bind(message:Message) {}
-}

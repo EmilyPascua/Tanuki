@@ -8,6 +8,7 @@ class PaymentEntity {
         val date: Date,
         val payment: Double,
         val type: String,
+        var user: String,
 
         val iconStr: Int,
         val backgroundStr: Int,
