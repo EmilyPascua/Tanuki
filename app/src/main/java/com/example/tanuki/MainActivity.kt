@@ -64,14 +64,14 @@ class MainActivity : AppCompatActivity() {
 
         drawerNavSetup()
         sectionsPagerSetup()
-//        setupUI()
+        setupUI()
     }
 
-//    private fun setupUI() {
-//        mainElements.logout.setOnClickListener {
-//            signOut()
-//        }
-//    }
+    private fun setupUI() {
+        mainElements.logout.setOnClickListener {
+            signOut()
+        }
+    }
 
     private fun signOut() {
         startActivity(Intent(this,Login::class.java))

@@ -9,6 +9,7 @@ class Users  {
     var weeklyBudget: Float? = null
     var monthlyBudget: Float? = null
 
+    constructor(){}
     constructor(name: String, uid: String, idToken: String, weeklyBudget: Float, monthlyBudget: Float) {
         this.name = name
         this.uid = uid

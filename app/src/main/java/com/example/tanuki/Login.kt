@@ -34,6 +34,7 @@ class Login : AppCompatActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var gso: GoogleSignInOptions
 
+
     companion object {
         private const val TAG = "GoogleActivity"
         private const val RC_SIGN_IN = 9001
@@ -41,7 +42,7 @@ class Login : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        loginElements = DataBindingUtil.setContentView(this,R.layout.activity_login)
+        loginElements = DataBindingUtil.setContentView(this, R.layout.activity_login)
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
         //instantiating GoogleSignInOptions object -> Specifies your sign in scope and to crate a google api
@@ -50,8 +51,8 @@ class Login : AppCompatActivity() {
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-        googleSignInClient = GoogleSignIn.getClient(this,gso)
-        loginElements.login.setOnClickListener{
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+        loginElements.login.setOnClickListener {
             signIn()
         }
 
@@ -103,8 +104,8 @@ class Login : AppCompatActivity() {
                     val idToken = acct.idToken
                         saveUser(currentUsr, personName!!, idToken!!)
                         updateUI(currentUsr)
-                }
-                else {
+
+                } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
 //                    Snackbar.make(main_layout, "Authentication Failed.", Snackbar.LENGTH_SHORT).show()
@@ -115,16 +116,40 @@ class Login : AppCompatActivity() {
     }
 
     private fun updateUI(currentUser: FirebaseUser?) {
-            startActivity(Intent(this,MainActivity::class.java))
-            finish()
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     private fun saveUser(currentUser: FirebaseUser?, name: String, idToken: String) {
-        val uid = FirebaseAuth.getInstance().uid?:""
-        val ref = FirebaseDatabase.getInstance().getReference("Users/$uid")
-//      create user object
-        val userObject = Users(name, uid, idToken, 0.toFloat(), 0.toFloat())
-        ref.setValue(userObject)
+            Log.d("saveUser method","checking if this method runs")
+            val usersRef = FirebaseDatabase.getInstance().getReference("Users")
+            val query = usersRef.orderByKey()
+
+            val uid = currentUser!!.uid
+
+            val listener = object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val list: ArrayList<String> = ArrayList()
+
+                    // Get Post object and use the values to update the UI
+                    dataSnapshot.children.forEach{
+                        Log.d("saveUser method","query loop")
+                        list.add(it.key!!)
+                    }
+
+                    if (!list.contains(uid)) {
+                        val userObject = Users(name, uid, idToken, 0.toFloat(), 0.toFloat())
+                        usersRef.child(uid).setValue(userObject)
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Getting Post failed, log a message
+                    Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+                    // ...
+                }
+            }
+            query.addListenerForSingleValueEvent(listener)
     }
 }
 
