@@ -1,7 +1,6 @@
 package com.example.tanuki.adapter
 
 import android.content.Context
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,19 +10,29 @@ import com.example.tanuki.App
 import com.example.tanuki.R
 import com.example.tanuki.model.PaymentEntity
 import kotlinx.android.synthetic.main.my_message.view.*
-import kotlinx.android.synthetic.main.other_message.view.*
+import kotlinx.android.synthetic.main.bot_message.view.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 private const val VIEW_TYPE_MY_MESSAGE = 1
-private const val VIEW_TYPE_OTHER_MESSAGE = 2
+private const val VIEW_TYPE_BOT_MESSAGE = 2
+
+object DateUtils {
+    fun fromMillisToTimeString(millis: Long) : String {
+        val format = SimpleDateFormat("hh:mm a", Locale.getDefault())
+        return format.format(millis)
+    }
+}
 
 open class MessageViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-    open fun bind(message:PaymentEntity) {}
+    open fun bind(message:PaymentEntity.Payment) {}
 }
 
 class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHolder>() {
-    private val messages: ArrayList<PaymentEntity> = ArrayList()
+    private val messages: ArrayList<PaymentEntity.Payment> = ArrayList()
 
-    fun addMessage(message: PaymentEntity){
+    fun addMessage(message: PaymentEntity.Payment){
         messages.add(message)
         notifyDataSetChanged()
     }
@@ -37,9 +46,8 @@ class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHo
 
         return if(App.user == message.user) {
             VIEW_TYPE_MY_MESSAGE
-        }
-        else {
-            VIEW_TYPE_OTHER_MESSAGE
+        } else  {
+            VIEW_TYPE_BOT_MESSAGE
         }
     }
 
@@ -47,7 +55,7 @@ class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHo
         return if(viewType == VIEW_TYPE_MY_MESSAGE) {
             MyMessageViewHolder(LayoutInflater.from(context).inflate(R.layout.my_message, parent, false))
         } else {
-            OtherMessageViewHolder(LayoutInflater.from(context).inflate(R.layout.other_message, parent, false))
+            BotMessageViewHolder(LayoutInflater.from(context).inflate(R.layout.bot_message, parent, false))
         }
     }
 
@@ -61,21 +69,21 @@ class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHo
         private var messageText: TextView = view.txtMyMessage
         private var timeText: TextView = view.txtMyMessageTime
 
-        override fun bind(message: PaymentEntity) {
-            messageText.text = message.message
-            timeText.text = DateUtils.fromMillisToTimeString(message.time)
+        override fun bind(message: PaymentEntity.Payment) {
+            messageText.text = message.type
+//            timeText.text = DateUtils.fromMillisToTimeString(message.time)
         }
     }
 
-    inner class OtherMessageViewHolder (view: View) : MessageViewHolder(view) {
-        private var messageText: TextView = view.txtOtherMessage
-        private var userText: TextView = view.txtOtherUser
-        private var timeText: TextView = view.txtOtherMessageTime
+    inner class BotMessageViewHolder (view: View) : MessageViewHolder(view) {
+        private var messageText: TextView = view.txtBotMessage
+        private var userText: TextView = view.txtBotUser
+        private var timeText: TextView = view.txtBotMessageTime
 
-        override fun bind(message: PaymentEntity) {
-            messageText.text = message.message
+        override fun bind(message: PaymentEntity.Payment) {
+            messageText.text = message.type
             userText.text = message.user
-            timeText.text = DateUtils.fromMillisToTimeString(message.time)
+//            timeText.text = DateUtils.fromMillisToTimeString(message.time)
         }
     }
 }
