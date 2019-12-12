@@ -46,11 +46,11 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var mainElements: ActivityMainBinding
-
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         mainElements = DataBindingUtil.setContentView(this,R.layout.activity_main)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -65,16 +65,17 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
 
     public override fun onStart() {
         super.onStart()
+        auth = FirebaseAuth.getInstance()
 
-        auth.addAuthStateListener{
+        val listener = FirebaseAuth.AuthStateListener {
             if (it.currentUser == null) {
-                Log.d("onStart", "user is null")
-
                 startActivity(Intent(this,Login::class.java))
                 finish()
             }
         }
+        auth.addAuthStateListener(listener)
     }
+
     //key would be food and value is double. Hashmap that represents how much spent. Every time new item is added check if it exists, if not add new item
     //Submit spendings. On click recycler view updates and resets chat - it adds on to hashmap: response is an arraylist (your response and robot response)
 

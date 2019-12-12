@@ -41,8 +41,7 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         loginElements = DataBindingUtil.setContentView(this,R.layout.activity_login)
-        // Initialize Firebase Auth
-        auth = FirebaseAuth.getInstance()
+
         database = FirebaseDatabase.getInstance()
 
         //instantiating GoogleSignInOptions object -> Specifies your sign in scope and to crate a google api
@@ -59,9 +58,14 @@ class Login : AppCompatActivity() {
 
     public override fun onStart() {
         super.onStart()
+        // Initialize Firebase Auth
+        auth = FirebaseAuth.getInstance()
+
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
+
         if (currentUser != null) {
+            Log.d("onStart","not null")
             updateUI()
         }
     }
