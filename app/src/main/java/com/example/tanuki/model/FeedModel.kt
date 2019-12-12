@@ -1,10 +1,12 @@
 package com.example.tanuki.model
 
+import java.util.*
+
 data class FeedModel(
     val id: Int,
-    val date: String,
-    val month: Int,
-    val day: Int,
-    val year: Int,
-    val message: String
+    val name: String,
+    val money : Int,
+    val date: Date,
+    val message: String,
+    val earning: Boolean
 )

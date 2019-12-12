@@ -1,51 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     android:background="@drawable/rounded_border"
-    >
+    android:orientation="horizontal">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <ImageView
+            android:id="@+id/poster"
             android:layout_width="110dp"
             android:layout_height="110dp"
-            android:src="@drawable/woman"
-            ></ImageView>
+            android:src="@drawable/woman"></ImageView>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:orientation="vertical">
             <!-- Bill type -->
             <TextView
                 android:id="@+id/feed_username"
-                android:text="Emily Pascua"
-                android:textSize="25dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></TextView>
+                android:layout_height="wrap_content"
+                android:text="Emily Pascua"
+                android:textSize="25dp"></TextView>
             <!-- Amount due -->
             <TextView
-                android:text=" has reached their montly goal of"
+                android:id="@+id/feed_earning"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></TextView>
+                android:layout_height="wrap_content"
+                android:text=" has reached their montly goal of"></TextView>
             <!-- Due date -->
             <TextView
                 android:id="@+id/feed_amount"
-                android:text="$3,000!"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></TextView>
-            <TextView
-                android:id="@+id/feed_date"
-                android:text="December 3, 2019"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"></TextView>
+                android:text="$3,000!"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:id="@+id/feed_message"
+                android:text="Money in the bank."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+
+            <TextView
+                android:id="@+id/feed_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="December 3, 2019"></TextView>
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

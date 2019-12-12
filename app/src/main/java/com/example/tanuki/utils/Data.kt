@@ -4,6 +4,7 @@ import com.example.tanuki.model.PaymentEntity
 import java.util.*
 import kotlin.collections.ArrayList
 import com.example.tanuki.R
+import com.example.tanuki.model.FeedModel
 import java.text.SimpleDateFormat;
 import kotlin.collections.HashMap
 
@@ -39,6 +40,18 @@ class Data {
         testData.add(PaymentEntity.Payment(15, Date(2020,0,7), 60.75, "Test-11", R.drawable.celebration_80, R.color.medium_aquamarine,true))
 
         return testData
+    }
+
+    fun createFeed():ArrayList<FeedModel>{
+        var testDataFeed = ArrayList<FeedModel>()
+        testDataFeed.add(FeedModel(0,"Conan Yee",489,Date(2020,12,12),"Please pass me. Check your PayPal",false))
+        testDataFeed.add(FeedModel(10,"David Adams",2,Date(2020,1,12),"Do your math homework!",true))
+        testDataFeed.add(FeedModel(20,"Chad",2147483647 ,Date(2015,4,1),"Who needs to pass when you got gains",true))
+        testDataFeed.add(FeedModel(30,"William Lee",3,Date(2019,8,12),"TFT tournament winnings",true))
+        testDataFeed.add(FeedModel(40,"Luella Bates Washington Jones",10,Date(2020,12,12),"XD",false))
+        testDataFeed.add(FeedModel(50,"Jerry Berry",0,Date(2020,12,12),"Clothing budget",false))
+        testDataFeed.add(FeedModel(60,"Yiliang Peng",200000,Date(2020,12,12),"Liquid check",true))
+        return testDataFeed
     }
 
     fun getCalendarSortedByDate(): HashMap<String, ArrayList<PaymentEntity.Payment>> {
