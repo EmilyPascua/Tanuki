@@ -4,14 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 import android.content.Context
-import android.widget.LinearLayoutManager
+//import android.widget.LinearLayoutManager
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_chat.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tanuki.adapter.MessageAdapter
+import com.example.tanuki.model.PaymentEntity
+import kotlinx.android.synthetic.main.fragment_chat.*
 import java.util.*
-import com.pusher.client.Pusher
-import com.pusher.client.PusherOptions
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,7 +28,7 @@ class ChatActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chat)
+        setContentView(R.layout.fragment_chat)
 
         messageList.layoutManager = LinearLayoutManager(this)
         adapter = MessageAdapter(this)
@@ -35,35 +36,35 @@ class ChatActivity: AppCompatActivity() {
 
         btnSend.setOnClickListener {
             if(txtMessage.text.isNotEmpty()) {
-                val message = Message(
+                val message = PaymentEntity.Payment(
                     App.user,
                     txtMessage.text.toString(),
-                    Calendar.getInstance().timeInMillis
+//                    Calendar.getInstance().timeInMillis
                 )
 
-                val call = ChatService.create().postMessage(message)
-
-                call.enqueue(object : Callback<Void> {
-                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                        resetInput()
-                        if (!response.isSuccessful) {
-                            Log.e(TAG, response.code().toString());
-                            Toast.makeText(applicationContext,"Response was not successful", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-
-                    override fun onFailure(call: Call<Void>, t: Throwable) {
-                        resetInput()
-                        Log.e(TAG, t.toString());
-                        Toast.makeText(applicationContext,"Error when calling the service", Toast.LENGTH_SHORT).show()
-                    }
-                })
+//                val call = ChatService.create().postMessage(message)
+//
+//                call.enqueue(object : Callback<Void> {
+//                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
+//                        resetInput()
+//                        if (!response.isSuccessful) {
+//                            Log.e(TAG, response.code().toString());
+//                            Toast.makeText(applicationContext,"Response was not successful", Toast.LENGTH_SHORT).show()
+//                        }
+//                    }
+//
+//                    override fun onFailure(call: Call<Void>, t: Throwable) {
+//                        resetInput()
+//                        Log.e(TAG, t.toString());
+//                        Toast.makeText(applicationContext,"Error when calling the service", Toast.LENGTH_SHORT).show()
+//                    }
+//                })
             } else {
                 Toast.makeText(applicationContext,"Message should not be empty", Toast.LENGTH_SHORT).show()
             }
         }
 
-        setupPusher()
+//        setupPusher()
     }
 
     private fun resetInput() {
@@ -75,30 +76,30 @@ class ChatActivity: AppCompatActivity() {
         inputManager.hideSoftInputFromWindow(currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
     }
 
-    private fun setupPusher() {
-        val options = PusherOptions()
-        options.setCluster(pusherAppCluster)
-
-        val pusher = Pusher(pusherAppKey, options)
-        val channel = pusher.subscribe("chat")
-
-        channel.bind("new_message") { channelName, eventName, data ->
-            val jsonObject = JSONObject(data)
-
-            val message = Message(
-                jsonObject["user"].toString(),
-                jsonObject["message"].toString(),
-                jsonObject["time"].toString().toLong()
-            )
-
-            runOnUiThread {
-                adapter.addMessage(message)
-                // scroll the RecyclerView to the last added element
-                messageList.scrollToPosition(adapter.itemCount - 1);
-            }
-
-        }
-
-        pusher.connect()
-    }
+//    private fun setupPusher() {
+//        val options = PusherOptions()
+//        options.setCluster(pusherAppCluster)
+//
+//        val pusher = Pusher(pusherAppKey, options)
+//        val channel = pusher.subscribe("chat")
+//
+//        channel.bind("new_message") { channelName, eventName, data ->
+//            val jsonObject = JSONObject(data)
+//
+//            val message = Message(
+//                jsonObject["user"].toString(),
+//                jsonObject["message"].toString(),
+//                jsonObject["time"].toString().toLong()
+//            )
+//
+//            runOnUiThread {
+//                adapter.addMessage(message)
+//                // scroll the RecyclerView to the last added element
+//                messageList.scrollToPosition(adapter.itemCount - 1);
+//            }
+//
+//        }
+//
+//        pusher.connect()
+//    }
 }
