@@ -14,6 +14,7 @@
             android:title="@string/nav_logout" />
     </group>
 
+<<<<<<< HEAD
 <!--    <item android:title="Communicate">-->
 <!--&lt;!&ndash;        <menu>&ndash;&gt;-->
 <!--&lt;!&ndash;            <item&ndash;&gt;-->
@@ -26,4 +27,18 @@
 <!--&lt;!&ndash;                android:title="@string/menu_send" />&ndash;&gt;-->
 <!--&lt;!&ndash;        </menu>&ndash;&gt;-->
 <!--    </item>-->
+=======
+    <item android:title="Communicate">
+<!--        <menu>-->
+<!--            <item-->
+<!--                android:id="@+id/nav_share"-->
+<!--                android:icon="@drawable/ic_menu_share"-->
+<!--                android:title="@string/menu_share" />-->
+<!--            <item-->
+<!--                android:id="@+id/nav_send"-->
+<!--                android:icon="@drawable/ic_menu_send"-->
+<!--                android:title="@string/menu_send" />-->
+<!--        </menu>-->
+    </item>
+>>>>>>> firebase
 </menu>
