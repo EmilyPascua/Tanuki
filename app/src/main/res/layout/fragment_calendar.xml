@@ -41,6 +41,5 @@
                 android:layout_height="35dp"
                 android:src="@drawable/happy"></ImageView>
         </LinearLayout>
-
     </LinearLayout>
 </FrameLayout>

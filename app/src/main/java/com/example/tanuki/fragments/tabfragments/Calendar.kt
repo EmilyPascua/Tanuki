@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CalendarView
 import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.TextView
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
 import com.example.tanuki.R
@@ -23,19 +24,14 @@ import java.util.*
 class Calendar : Fragment() {
     private lateinit var pageViewModel: PageViewModel
     private lateinit var calendarList:RecyclerView
-    private lateinit var calendar:CalendarView
-    private lateinit var noneExist:LinearLayout
+    private lateinit var calendar: CalendarView
+    private lateinit var noneExist: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var act = (activity as AppCompatActivity)
-
         pageViewModel = ViewModelProviders.of(this).get(PageViewModel::class.java).apply {
             setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
         }
-
-
-
     }
 
     override fun onCreateView(
@@ -43,6 +39,7 @@ class Calendar : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_calendar, container, false)
+
         val testDataHashmap = Data().getCalendarSortedByDate()
         val sdf = SimpleDateFormat("MM-dd-yyyy")
         // Text View if No items exists
@@ -90,8 +87,8 @@ class Calendar : Fragment() {
 
         }
 
-    return root
-}
+        return root
+    }
 
     companion object {
         /**
@@ -114,6 +111,4 @@ class Calendar : Fragment() {
             }
         }
     }
-
-
 }

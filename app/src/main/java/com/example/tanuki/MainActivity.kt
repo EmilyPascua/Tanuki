@@ -1,8 +1,11 @@
 package com.example.tanuki
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 
 //TabLayout
 
@@ -16,10 +19,14 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.core.view.GravityCompat
+
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.viewpager.widget.ViewPager
+import com.example.tanuki.databinding.ActivityMainBinding
 import com.example.tanuki.fragments.tabfragments.SectionsPagerAdapter
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.auth.FirebaseAuth
 
 private val TAB_ICONS = arrayOf(
     R.drawable.feed_icon,
@@ -27,7 +34,7 @@ private val TAB_ICONS = arrayOf(
     R.drawable.calendar_icon
 )
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
     // The main activity will lead to the following pages:
     // 1. Feed
     // 2. Calendar
@@ -38,10 +45,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navView: NavigationView
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var mainElements: ActivityMainBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        mainElements = DataBindingUtil.setContentView(this,R.layout.activity_main)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -51,6 +61,28 @@ class MainActivity : AppCompatActivity() {
 
         drawerNavSetup()
         sectionsPagerSetup()
+    }
+
+    public override fun onStart() {
+        super.onStart()
+        auth = FirebaseAuth.getInstance()
+
+        val listener = FirebaseAuth.AuthStateListener {
+            if (it.currentUser == null) {
+                startActivity(Intent(this,Login::class.java))
+                finish()
+            }
+        }
+        auth.addAuthStateListener(listener)
+    }
+
+    //key would be food and value is double. Hashmap that represents how much spent. Every time new item is added check if it exists, if not add new item
+    //Submit spendings. On click recycler view updates and resets chat - it adds on to hashmap: response is an arraylist (your response and robot response)
+
+    private fun signOut() {
+        startActivity(Intent(this,Login::class.java))
+        FirebaseAuth.getInstance().signOut()
+        finish()
     }
 
     fun sectionsPagerSetup() {
@@ -79,33 +111,20 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        navView.setNavigationItemSelectedListener(this)
     }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        val id = item.getItemId()
-//
-//        if (id == R.id.feed_tab) {
-//            navController.navigate(R.id.tab_feed)
-//            Toast.makeText(this,"Feed Tab",Toast.LENGTH_SHORT).show()
-//            return true
-//        }
-//        else if (id == R.id.finances_tab) {
-//            navController.navigate(R.id.tab_finance)
-//            Toast.makeText(this,"Finance Tab",Toast.LENGTH_SHORT).show()
-//            return true
-//        }
-//        else if (id == R.id.calendar_tab) {
-//            navController.navigate(R.id.tab_calendar)
-//            Toast.makeText(this,"Calendar Tab",Toast.LENGTH_SHORT).show()
-//            return true
-//        }
-//        else {
-//            return false
-//        }
-//    }
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        // Handle item selection
+        return when (item.itemId) {
+            R.id.nav_logout -> {
+                signOut()
+
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     override fun onBackPressed() {
         val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
