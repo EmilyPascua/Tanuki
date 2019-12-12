@@ -35,12 +35,12 @@ class ChatActivity: AppCompatActivity() {
         messageList.adapter = adapter
 
         btnSend.setOnClickListener {
-            if(txtMessage.text.isNotEmpty()) {
-                val message = PaymentEntity.Payment(
-                    App.user,
-                    txtMessage.text.toString(),
+//            if(txtMessage.text.isNotEmpty()) {
+//                val message = PaymentEntity.Payment(
+//                    App.user,
+//                    txtMessage.text.toString(),
 //                    Calendar.getInstance().timeInMillis
-                )
+//                )
 
 //                val call = ChatService.create().postMessage(message)
 //
@@ -59,22 +59,19 @@ class ChatActivity: AppCompatActivity() {
 //                        Toast.makeText(applicationContext,"Error when calling the service", Toast.LENGTH_SHORT).show()
 //                    }
 //                })
-            } else {
-                Toast.makeText(applicationContext,"Message should not be empty", Toast.LENGTH_SHORT).show()
-            }
         }
 
 //        setupPusher()
-    }
+//    }
 
-    private fun resetInput() {
-        // Clean text box
-        txtMessage.text.clear()
-
-        // Hide keyboard
-        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputManager.hideSoftInputFromWindow(currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
-    }
+//    private fun resetInput() {
+//        // Clean text box
+//        txtMessage.text.clear()
+//
+//        // Hide keyboard
+//        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+//        inputManager.hideSoftInputFromWindow(currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+//    }
 
 //    private fun setupPusher() {
 //        val options = PusherOptions()
@@ -101,5 +98,5 @@ class ChatActivity: AppCompatActivity() {
 //        }
 //
 //        pusher.connect()
-//    }
+    }
 }

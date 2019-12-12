@@ -18,19 +18,20 @@ import kotlin.collections.ArrayList
 private const val VIEW_TYPE_MY_MESSAGE = 1
 private const val VIEW_TYPE_BOT_MESSAGE = 2
 
-object DateUtils {
-    fun fromMillisToTimeString(millis: Long) : String {
-        val format = SimpleDateFormat("hh:mm a", Locale.getDefault())
-        return format.format(millis)
-    }
-}
-
-open class MessageViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-    open fun bind(message:PaymentEntity.Payment) {}
-}
-
 class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHolder>() {
+
     private val messages: ArrayList<PaymentEntity.Payment> = ArrayList()
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
+
+        val inflater = LayoutInflater.from(parent.context)
+        return MyMessageViewHolder(inflater.inflate(R.layout.fragment_chat, parent, false))
+//        return if(viewType == VIEW_TYPE_MY_MESSAGE) {
+//            MyMessageViewHolder(LayoutInflater.from(context).inflate(R.layout.my_message, parent, false))
+//        } else {
+//            BotMessageViewHolder(LayoutInflater.from(context).inflate(R.layout.bot_message, parent, false))
+//        }
+    }
 
     fun addMessage(message: PaymentEntity.Payment){
         messages.add(message)
@@ -51,13 +52,7 @@ class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHo
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-        return if(viewType == VIEW_TYPE_MY_MESSAGE) {
-            MyMessageViewHolder(LayoutInflater.from(context).inflate(R.layout.my_message, parent, false))
-        } else {
-            BotMessageViewHolder(LayoutInflater.from(context).inflate(R.layout.bot_message, parent, false))
-        }
-    }
+
 
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         val message = messages.get(position)
@@ -88,3 +83,13 @@ class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHo
     }
 }
 
+object DateUtils {
+    fun fromMillisToTimeString(millis: Long) : String {
+        val format = SimpleDateFormat("hh:mm a", Locale.getDefault())
+        return format.format(millis)
+    }
+}
+
+open class MessageViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+    open fun bind(message:PaymentEntity.Payment) {}
+}

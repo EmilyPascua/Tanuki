@@ -11,13 +11,24 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.tanuki.R
 import com.google.android.material.tabs.TabLayout
 import android.view.MenuInflater
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tanuki.adapter.MessageAdapter
 import com.example.tanuki.fragments.tabfragments.PageViewModel
+import kotlinx.android.synthetic.main.fragment_chat.*
 
 class ChatFragment : Fragment() {
-    private lateinit var homeViewModel : HomeViewModel
+    private lateinit var pageViewModel: PageViewModel
     private lateinit var chatHistory : RecyclerView
+    private lateinit var adapter: MessageAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        pageViewModel = ViewModelProviders.of(this).get(PageViewModel::class.java).apply{
+            setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,10 +36,9 @@ class ChatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_chat, container, false)
-//        val textView: TextView = root.findViewById(R.id.text_home)
-//        homeViewModel.text.observe(this, Observer {
-//            textView.text = it
-//        })
+        messageList.layoutManager = LinearLayoutManager(this)
+        adapter = MessageAdapter()
+        messageList.adapter = adapter
         return root
     }
 
@@ -37,6 +47,28 @@ class ChatFragment : Fragment() {
 
         if (item != null)
             item.isVisible = false
+    }
+
+    companion object {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        private const val ARG_SECTION_NUMBER = "section_number"
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+
+        @JvmStatic
+        fun newInstance(sectionNumber: Int): ChatFragment {
+            return ChatFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(ARG_SECTION_NUMBER, sectionNumber)
+                }
+            }
+        }
     }
 
     override fun onResume() {
