@@ -32,14 +32,20 @@ class FeedAdapter(private val allposts: ArrayList<FeedModel>) :
 
     class FeedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(post: FeedModel) {
-
+            if(post.gender == "f"){
+                itemView.feed_usericon.setImageResource(R.drawable.woman)
+            }else{
+                itemView.feed_usericon.setImageResource(R.drawable.boy)
+            }
             itemView.feed_username.text = post.name
             itemView.feed_amount.text = "$" + post.money.toString()
-            itemView.feed_message.text = post.message
-            if(post.earning)
-                itemView.feed_earning.text = "earned"
-            else
-                itemView.feed_earning.text = "paid"
+            itemView.feed_earning.text = "has reached their montly goal of"
+            if(post.goalType == "montly"){
+                itemView.feed_earning.text = "has reached their montly goal of"
+            }else{
+                itemView.feed_earning.text = "has reached their yearly goal of"
+            }
+            itemView.feed_message.text = "\"" + post.message +"\""
             val sdf = SimpleDateFormat("MM/dd/yy")
             itemView.feed_date.text = "" + sdf.format(post.date)
 

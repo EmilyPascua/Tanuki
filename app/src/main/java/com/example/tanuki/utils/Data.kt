@@ -44,13 +44,13 @@ class Data {
 
     fun createFeed():ArrayList<FeedModel>{
         var testDataFeed = ArrayList<FeedModel>()
-        testDataFeed.add(FeedModel(0,"Conan Yee",489,Date(2020,12,12),"Please pass me. Check your PayPal",false))
-        testDataFeed.add(FeedModel(10,"David Adams",2,Date(2020,1,12),"Do your math homework!",true))
-        testDataFeed.add(FeedModel(20,"Chad",2147483647 ,Date(2015,4,1),"Who needs to pass when you got gains",true))
-        testDataFeed.add(FeedModel(30,"William Lee",3,Date(2019,8,12),"TFT tournament winnings",true))
-        testDataFeed.add(FeedModel(40,"Luella Bates Washington Jones",10,Date(2020,12,12),"XD",false))
-        testDataFeed.add(FeedModel(50,"Jerry Berry",0,Date(2020,12,12),"Clothing budget",false))
-        testDataFeed.add(FeedModel(60,"Yiliang Peng",200000,Date(2020,12,12),"Liquid check",true))
+        testDataFeed.add(FeedModel(0,"Conan Yee","m","montly",489.00,Date(2020,12,12),"Please pass me. Check your PayPal",false))
+        testDataFeed.add(FeedModel(10,"Emily Adams","f", "yearly",2.34,Date(2020,1,12),"Do your math homework!",true))
+        testDataFeed.add(FeedModel(20,"Chad","m","montly",2147483647.32 ,Date(2015,4,1),"Who needs to pass when you got gains",true))
+        testDataFeed.add(FeedModel(30,"William Lee","m","montly",3.54,Date(2019,8,12),"TFT tournament winnings",true))
+        testDataFeed.add(FeedModel(40,"Luella Jones","f","montly",10.12,Date(2020,12,12),"XD",false))
+        testDataFeed.add(FeedModel(50,"Jerry Berry", "f","yearly",0.00,Date(2020,12,12),"Clothing budget",false))
+        testDataFeed.add(FeedModel(60,"Yiliang Peng","m","yearly",200000.32,Date(2020,12,12),"Liquid check",true))
         return testDataFeed
     }
 
