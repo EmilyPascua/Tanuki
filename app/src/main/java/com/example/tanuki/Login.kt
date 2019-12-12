@@ -80,19 +80,6 @@ class Login : AppCompatActivity() {
         }
     }
 
-    public override fun onStart() {
-        super.onStart()
-        getUsers()
-
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
-
-        if (currentUser != null) {
-            Log.d("onStart", "user not null")
-            updateUI(currentUser)
-        }
-    }
-
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.id!!)
 
@@ -102,12 +89,13 @@ class Login : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
-                    val currentUsr = auth.currentUser
-                    val personName = acct.displayName
-                    val email = acct.email
+                    val user = auth.currentUser!!
+                    val name = acct.displayName!!
+                    val email = acct.email!!
 
-                    saveUser(currentUsr, personName!!, email!!)
-                    updateUI(currentUsr)
+                    saveUser(user, name, email)
+
+                    updateUI()
                 }
                 else {
                     // If sign in fails, display a message to the user.
@@ -119,17 +107,17 @@ class Login : AppCompatActivity() {
             }
     }
 
-    private fun updateUI(currentUser: FirebaseUser?) {
-            startActivity(Intent(this,MainActivity::class.java))
-            finish()
+    private fun updateUI() {
+        startActivity(Intent(this,MainActivity::class.java))
+        finish()
     }
 
-    private fun saveUser(currentUser: FirebaseUser?, name: String, email: String) {
+    private fun saveUser(user: FirebaseUser, name: String, email: String) {
         Log.d("saveUser method","checking if this method runs")
-        val usersRef = database.getReference("User")
+        val usersRef = database.getReference("Users")
         val query = usersRef.orderByKey()
 
-        val uid = currentUser!!.uid
+        val uid = user.uid
 
 
         val listener = object : ValueEventListener {
@@ -144,11 +132,13 @@ class Login : AppCompatActivity() {
 
                 if (!list.contains(uid)) {
                     val userObject = User(
-                        name,
                         uid,
+                        name,
+                        "m",
                         email,
-                        0.toFloat(),
-                        0.toFloat()
+                        ArrayList(),
+                        0.0,
+                        0.0
                     )
                     usersRef.child(uid).setValue(userObject)
                 }
@@ -162,34 +152,33 @@ class Login : AppCompatActivity() {
         }
         query.addListenerForSingleValueEvent(listener)
     }
-
-    private fun getUsers(): Boolean {
-        Log.d("getUsers","should start")
-        val usersRef = database.getReference("Users")
-        val query = usersRef.orderByKey()
-
-
-        val listener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // Get Post object and use the values to update the UI
-                dataSnapshot.children.forEach{
-                    Log.d("getUsers","get users")
-                    val list: ArrayList<User> = ArrayList()
-
-                    list.add(it.getValue(User::class.java)!!)
-                }
-
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Getting Post failed, log a message
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
-                // ...
-            }
-        }
-        query.addListenerForSingleValueEvent(listener)
-
-        return true
-    }
+//
+//    private fun getUsers(): Boolean {
+//        Log.d("getUsers","should start")
+//        val usersRef = database.getReference("Users")
+//        val query = usersRef.orderByKey()
+//
+//        val listener = object : ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                // Get Post object and use the values to update the UI
+//                dataSnapshot.children.forEach{
+//                    Log.d("getUsers","get users")
+//                    val list: ArrayList<User> = ArrayList()
+//
+//                    list.add(it.getValue(User::class.java)!!)
+//                }
+//
+//            }
+//
+//            override fun onCancelled(databaseError: DatabaseError) {
+//                // Getting Post failed, log a message
+//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+//                // ...
+//            }
+//        }
+//        query.addListenerForSingleValueEvent(listener)
+//
+//        return true
+//    }
 }
 

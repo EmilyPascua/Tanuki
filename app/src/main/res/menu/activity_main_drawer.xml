@@ -8,18 +8,22 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home_black_24dp"
             android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="@string/nav_logout" />
     </group>
 
-    <item android:title="Communicate">
-<!--        <menu>-->
-<!--            <item-->
-<!--                android:id="@+id/nav_share"-->
-<!--                android:icon="@drawable/ic_menu_share"-->
-<!--                android:title="@string/menu_share" />-->
-<!--            <item-->
-<!--                android:id="@+id/nav_send"-->
-<!--                android:icon="@drawable/ic_menu_send"-->
-<!--                android:title="@string/menu_send" />-->
-<!--        </menu>-->
-    </item>
+<!--    <item android:title="Communicate">-->
+<!--&lt;!&ndash;        <menu>&ndash;&gt;-->
+<!--&lt;!&ndash;            <item&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/nav_share"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:icon="@drawable/ic_menu_share"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:title="@string/menu_share" />&ndash;&gt;-->
+<!--&lt;!&ndash;            <item&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/nav_send"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:icon="@drawable/ic_menu_send"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:title="@string/menu_send" />&ndash;&gt;-->
+<!--&lt;!&ndash;        </menu>&ndash;&gt;-->
+<!--    </item>-->
 </menu>
