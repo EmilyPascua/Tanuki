@@ -36,4 +36,8 @@
     <string name="firebase_login">Firebase Login</string>
     <string name="login_with_google">Log In With Google</string>
     <string name="nav_logout">Logout</string>
+
+    <!-- Calendar Fragment -->
+    <string name="calendar_Upcoming">Upcoming Payments</string>
+    <string name="calendar_no_upcoming">No bills due! </string>
 </resources>
