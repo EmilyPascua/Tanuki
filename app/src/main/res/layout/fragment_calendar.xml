@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.tabfragments.Calendar"
+    tools:context=".fragments.tabfragments.CalendarFragment"
     android:background="@color/colorGrey">
     <LinearLayout
         android:layout_width="match_parent"

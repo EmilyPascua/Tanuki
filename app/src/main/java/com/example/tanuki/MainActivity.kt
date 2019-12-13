@@ -7,9 +7,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 
-//TabLayout
-
-//Navigation Drawer
+//drawer
 import com.google.android.material.navigation.NavigationView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.widget.Toolbar
@@ -19,9 +17,10 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.core.view.GravityCompat
-
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
+
+//tab
 import androidx.viewpager.widget.ViewPager
 import com.example.tanuki.databinding.ActivityMainBinding
 import com.example.tanuki.fragments.tabfragments.SectionsPagerAdapter
@@ -37,7 +36,7 @@ private val TAB_ICONS = arrayOf(
 class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
     // The main activity will lead to the following pages:
     // 1. Feed
-    // 2. Calendar
+    // 2. CalendarFragment
     // 3. The "chat" - or finances
     // These are all fragments as they will inherit the same navigation bar
 
@@ -121,6 +120,23 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         navView.setNavigationItemSelectedListener(this)
     }
 
+    //this functions allows for navigation between fragments via the appbar
+    //if there is an item on the appbar then you can use function to navigate to a specifiv
+    //fragment. Define the fragments in the navigation/mobile.navigation
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        val id = item.getItemId()
+
+        if (id == R.id.chat_item) {
+            navController.navigate(R.id.tab_chat)
+            return true
+        } else {
+            return false
+        }
+    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle item selection
         return when (item.itemId) {
@@ -145,6 +161,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
+
         return true
     }
 

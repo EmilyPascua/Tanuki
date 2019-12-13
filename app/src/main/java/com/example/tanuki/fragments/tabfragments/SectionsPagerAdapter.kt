@@ -5,9 +5,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.tanuki.R
-import com.example.tanuki.fragments.tabfragments.ActivityFeed
-import com.example.tanuki.fragments.tabfragments.Calendar
-import com.example.tanuki.fragments.tabfragments.Finance
 
 private val TAB_TITLES = arrayOf(
     R.string.feed_title,
@@ -26,17 +23,17 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
         // getItem is called to instantiate the fragment for the given page.
         // Return a place holderFragment (defined as a static inner class below).
 
-        var fragment: Fragment = ActivityFeed.newInstance(1)
+        var fragment: Fragment = FeedFragment.newInstance(1)
 
         when(position) {
             0 -> {
-                fragment = ActivityFeed.newInstance(position + 1)
+                fragment = FeedFragment.newInstance(position + 1)
             }
             1 -> {
-                fragment = Finance.newInstance(position + 1)
+                fragment = FinanceFragment.newInstance(position + 1)
             }
             2 -> {
-                fragment = Calendar.newInstance(position + 1)
+                fragment = CalendarFragment.newInstance(position + 1)
             }
         }
         return fragment

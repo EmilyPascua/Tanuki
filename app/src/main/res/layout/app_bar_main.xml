@@ -22,7 +22,7 @@
                 layout="@layout/tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="72dp"/>
+                android:layout_marginRight="24dp"/>
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
