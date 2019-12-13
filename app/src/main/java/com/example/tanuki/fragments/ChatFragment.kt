@@ -26,6 +26,7 @@ class ChatFragment : Fragment() {
     private lateinit var submit: Button
     private lateinit var chatMessage: EditText
     private lateinit var chatList: RecyclerView
+    private var messages = ArrayList<Array<String>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,8 +39,6 @@ class ChatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_chat, container, false)
-        val messages = ArrayList<Array<String>>()
-        val messageResponse = arrayOf("Message","Response")
 
         submit = root.findViewById(R.id.submit_button)
         chatMessage = root.findViewById(R.id.chat_message)
@@ -49,18 +48,20 @@ class ChatFragment : Fragment() {
 
         submit.setOnClickListener {
             val date: Date = Date()
+            val messageResponse = arrayOf("Message","Response")
             val message: String = chatMessage.text.toString()
-            val type: String = "Test"
+            val type: String = message
             val payment: Double = 6.75
             val isBill: Boolean = false
             val newAmount: PaymentEntity.Payment =
                 PaymentEntity.Payment(0, Date(date.year,date.month,date.day), payment, type, R.drawable.celebration_80, R.color.medium_blue,isBill)
-            val yourMessage = "You made a payment of " + newAmount.payment
+            val yourMessage = "You made a payment of " + newAmount.type
             val tanukiResponse = "TANULKI : This is a reply."
             messageResponse[0] = yourMessage
             messageResponse[1] = tanukiResponse
             messages.add(messageResponse)
-            Collections.reverse(messages)
+            messages.forEach { System.out.println(it[0])}
+            messages.reverse()
             chatList.adapter = ChatAdapter(messages)
 
         }
