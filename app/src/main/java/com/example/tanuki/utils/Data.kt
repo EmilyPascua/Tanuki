@@ -38,7 +38,8 @@ class Data {
         testData.add(PaymentEntity.Payment(13, Date(2020,0,6), 60.75, "Test-09", R.drawable.sick_80, R.color.dark_khaki,true))
         testData.add(PaymentEntity.Payment(14, Date(2020,0,6), 60.75, "Test-10", R.drawable.travel_80, R.color.sienna,true))
         testData.add(PaymentEntity.Payment(15, Date(2020,0,7), 60.75, "Test-11", R.drawable.celebration_80, R.color.medium_aquamarine,true))
-
+        System.out.println(testData[0].iconStr)
+        System.out.println(testData[0].backgroundStr)
         return testData
     }
 

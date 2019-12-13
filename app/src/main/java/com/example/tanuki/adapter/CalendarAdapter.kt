@@ -34,7 +34,7 @@ class CalendarAdapter(private val billsin: ArrayList<PaymentEntity.Payment>) : R
             itemView.calendar_icon.setCircleBackgroundColorResource(payment.backgroundStr)
             itemView.calendar_icon.borderColor = payment.backgroundStr
             itemView.calendar_item_header.text = payment.type + " Bill"
-            itemView.calendar_item_amount.text = "Amount Due: $" + payment.payment
+            itemView.calendar_item_amount.text = "Amo  unt Due: $" + payment.payment
             val sdf = SimpleDateFormat("MM/dd/yy")
 
             itemView.calendar_item_date.text = "Due Date: " + sdf.format(payment.date)

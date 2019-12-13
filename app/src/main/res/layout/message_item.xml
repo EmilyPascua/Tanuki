@@ -13,14 +13,16 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
-        android:padding="5dp"
+        android:padding="10dp"
         android:background="@drawable/rounded_border"
         >
 
         <LinearLayout
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:layout_gravity="center">
         <!-- Bill type -->
         <TextView
             android:id="@+id/chat_username"
@@ -43,11 +45,12 @@
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/chat_usericon"
-            app:civ_circle_background_color="@color/colorAccent"
+            app:civ_circle_background_color="@color/colorGrey"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:src="@drawable/woman"
-            android:layout_gravity="right"
+            android:layout_gravity="center"
+
             android:layout_margin="10dp"></de.hdodenhof.circleimageview.CircleImageView>
         <!-- Due date -->
     </LinearLayout>
@@ -59,21 +62,21 @@
         android:orientation="horizontal"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:padding="5dp"
+        android:padding="10dp"
         android:background="@drawable/rounded_border_dark"
         >
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            app:civ_circle_background_color="@color/colorAccent"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:src="@drawable/logo"
+            android:layout_gravity="center"
             android:layout_margin="10dp"></de.hdodenhof.circleimageview.CircleImageView>
         <LinearLayout
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center">
         <!-- Bill type -->
         <TextView
             android:text="Tanuki"
