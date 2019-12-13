@@ -151,11 +151,7 @@ class Login : AppCompatActivity() {
                     val userObject = User(
                         uid,
                         name,
-                        "m",
-                        email,
-                        ArrayList(),
-                        0.0,
-                        0.0
+                        "m"
                     )
                     usersRef.child(uid).setValue(userObject)
                 }
@@ -169,33 +165,5 @@ class Login : AppCompatActivity() {
         }
         query.addListenerForSingleValueEvent(listener)
     }
-//
-//    private fun getUsers(): Boolean {
-//        Log.d("getUsers","should start")
-//        val usersRef = database.getReference("Users")
-//        val query = usersRef.orderByKey()
-//
-//        val listener = object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                // Get Post object and use the values to update the UI
-//                dataSnapshot.children.forEach{
-//                    Log.d("getUsers","get users")
-//                    val list: ArrayList<User> = ArrayList()
-//
-//                    list.add(it.getValue(User::class.java)!!)
-//                }
-//
-//            }
-//
-//            override fun onCancelled(databaseError: DatabaseError) {
-//                // Getting Post failed, log a message
-//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
-//                // ...
-//            }
-//        }
-//        query.addListenerForSingleValueEvent(listener)
-//
-//        return true
-//    }
 }
 

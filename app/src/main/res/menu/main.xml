@@ -4,7 +4,7 @@
     <item
         android:id="@+id/chat_item"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_person_white_24dp"
-        android:title="@string/calendar_title"
+        android:icon="@drawable/pencil"
+        android:title="@string/chat_title"
         app:showAsAction="always" />
 </menu>
