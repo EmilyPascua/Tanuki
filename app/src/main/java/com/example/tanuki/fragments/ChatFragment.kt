@@ -12,9 +12,6 @@ import com.google.android.material.tabs.TabLayout
 import android.view.MenuInflater
 
 
-
-
-
 class ChatFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

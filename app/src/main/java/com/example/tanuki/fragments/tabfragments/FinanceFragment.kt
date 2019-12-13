@@ -5,14 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.lifecycle.Observer
+import android.widget.CalendarView
+import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.example.tanuki.R
+import com.example.tanuki.adapter.CalendarAdapter
+import com.example.tanuki.adapter.FinanceAdapter
+import com.example.tanuki.utils.Data
+import java.text.SimpleDateFormat
+import java.util.*
 
 class FinanceFragment : Fragment() {
     private lateinit var pageViewModel: PageViewModel
+    private lateinit var financeList: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,10 +34,11 @@ class FinanceFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_finance, container, false)
-        val textView: TextView = root.findViewById(R.id.finance_text)
-        pageViewModel.text.observe(this, Observer<String> {
-            textView.text = it
-        })
+        val testDataArray = Data().createCalendar()
+        // Recycler View
+        financeList = root.findViewById(R.id.finance_list)
+        financeList.layoutManager = LinearLayoutManager(context)
+        financeList.adapter = FinanceAdapter(testDataArray)
 
         return root
     }

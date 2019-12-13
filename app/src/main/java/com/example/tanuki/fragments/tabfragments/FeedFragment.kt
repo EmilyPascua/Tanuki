@@ -8,10 +8,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.tanuki.R
+import com.example.tanuki.adapter.FeedAdapter
+import com.example.tanuki.utils.Data
+import kotlinx.android.synthetic.main.fragment_activity_feed.*
 
 class FeedFragment : Fragment() {
     private lateinit var pageViewModel: PageViewModel
+    private lateinit var feedList: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,11 +31,10 @@ class FeedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_activity_feed, container, false)
-        val textView: TextView = root.findViewById(R.id.activity_feed_text)
-        pageViewModel.text.observe(this, Observer<String> {
-            textView.text = "ACTIVITYFEED!"
-        })
-
+        val testDataFeed = Data().createFeed()
+        feedList = root.findViewById(R.id.feed)
+        feedList.layoutManager = LinearLayoutManager(context)
+        feedList.adapter = FeedAdapter(testDataFeed)
         return root
     }
 

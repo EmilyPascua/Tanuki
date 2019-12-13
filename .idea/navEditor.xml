@@ -22,6 +22,11 @@
                   </entry>
                   <entry key="nav_test">
                     <value>
+                      <LayoutPositions />
+                    </value>
+                  </entry>
+                  <entry key="tab_chat">
+                    <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>

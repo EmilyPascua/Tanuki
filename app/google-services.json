@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "137261033482",
+    "firebase_url": "https://tanuki-1a0fa.firebaseio.com",
+    "project_id": "tanuki-1a0fa",
+    "storage_bucket": "tanuki-1a0fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137261033482:android:f3e90f1bbac0fa570517f3",
+        "android_client_info": {
+          "package_name": "com.example.tanuki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137261033482-sp2tnvisng33lnqst8ukkvqhbg1dabvl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tanuki",
+            "certificate_hash": "863d082d943104741aef3850857bb88f7a4f6c28"
+          }
+        },
+        {
+          "client_id": "137261033482-km16ria1f0e7rcla0mibuaf7koj625qq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBf8B8t6sJ5BYNRC676dcSPkkTYtTtzdxM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137261033482-km16ria1f0e7rcla0mibuaf7koj625qq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

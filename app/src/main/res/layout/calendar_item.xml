@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/rounded_border"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/calendar_icon"
+            app:civ_circle_background_color="@color/colorAccent"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/wifi_large"
+            android:layout_margin="10dp"></de.hdodenhof.circleimageview.CircleImageView>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="10dp">
+            <!-- Bill type -->
+            <TextView
+                android:id="@+id/calendar_item_header"
+                android:text="Internet"
+                android:textSize="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+            <!-- Amount due -->
+            <TextView
+                android:id="@+id/calendar_item_amount"
+                android:text="$60.00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+            <!-- Due date -->
+            <TextView
+                android:id="@+id/calendar_item_date"
+                android:text="December 30, 2019"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

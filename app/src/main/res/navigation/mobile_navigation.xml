@@ -12,12 +12,6 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_test"
-        android:name="com.example.tanuki.fragments.Test"
-        android:label="Test"
-        tools:layout="@layout/fragment_test" />
-
-    <fragment
         android:id="@+id/tab_chat"
         android:name="com.example.tanuki.fragments.ChatFragment"
         android:label="Chat"

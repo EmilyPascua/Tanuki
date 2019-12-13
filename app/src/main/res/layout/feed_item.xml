@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/rounded_border"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10px"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/feed_usericon"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:src="@drawable/woman"></ImageView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+            <!-- Bill type -->
+            <TextView
+                android:id="@+id/feed_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Emily Pascua"
+                android:textSize="25dp"></TextView>
+            <!-- Amount due -->
+            <TextView
+                android:id="@+id/feed_earning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" has reached their montly goal of"></TextView>
+            <!-- Due date -->
+            <TextView
+                android:id="@+id/feed_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$3,000!"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:id="@+id/feed_message"
+                android:text="Money in the bank."
+                android:textStyle="italic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+            <TextView
+                android:id="@+id/feed_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity="bottom"
+                android:text="December 3, 2019"></TextView>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
