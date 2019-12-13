@@ -1,18 +1,20 @@
 package com.example.tanuki.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tanuki.R
 import com.example.tanuki.model.FeedModel
+import com.example.tanuki.model.PaymentEntity
 import kotlinx.android.synthetic.main.feed_item.view.*
 import java.text.SimpleDateFormat
 
 class FeedAdapter(private val allposts: ArrayList<FeedModel>) :
     RecyclerView.Adapter<FeedAdapter.FeedViewHolder>() {
 
-    private val posts: ArrayList<FeedModel> = allposts
+    private var posts: ArrayList<FeedModel> = allposts
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -28,6 +30,12 @@ class FeedAdapter(private val allposts: ArrayList<FeedModel>) :
 
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
         holder.bind(posts[position])
+    }
+
+    fun updateFeed(feed: ArrayList<FeedModel>) {
+        posts = feed
+        notifyDataSetChanged()
+        Log.d("updateFeed","has ran")
     }
 
     class FeedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

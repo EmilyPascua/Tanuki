@@ -1,5 +1,6 @@
 package com.example.tanuki.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +14,17 @@ import java.text.SimpleDateFormat
 
 class FinanceAdapter(private val billsin: ArrayList<PaymentEntity.Payment>) : RecyclerView.Adapter<FinanceAdapter.FinanceViewHolder>() {
 
-    private val bills: ArrayList<PaymentEntity.Payment> = billsin
+    private var bills: ArrayList<PaymentEntity.Payment> = billsin
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FinanceViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return FinanceViewHolder(inflater.inflate(R.layout.finance_item, parent, false))
+    }
+
+    fun updateFeed(feed: ArrayList<PaymentEntity.Payment>) {
+        bills = feed
+        notifyDataSetChanged()
+        Log.d("updateFeed","has ran")
     }
 
     override fun getItemCount(): Int {
@@ -39,12 +46,12 @@ class FinanceAdapter(private val billsin: ArrayList<PaymentEntity.Payment>) : Re
 
             if(payment.isBill){
                 itemView.finance_bill_or_spending.text = "You have a bill of "
-                itemView.finance_amount.text = "$" + payment.payment
+                itemView.finance_amount.text = "$" + payment.amount
                 itemView.finance_type.text = " for " + payment.type + "."
 
             }else{
-                itemView.finance_bill_or_spending.text = "You spend "
-                itemView.finance_amount.text = "$" + payment.payment
+                itemView.finance_bill_or_spending.text = "You spent "
+                itemView.finance_amount.text = "$" + payment.amount
                 itemView.finance_type.text = " on " + payment.type + "."
             }
             val sdf = SimpleDateFormat("MM/dd/yy")

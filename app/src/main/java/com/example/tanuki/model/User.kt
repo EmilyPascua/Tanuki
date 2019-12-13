@@ -9,6 +9,6 @@ data class User(
     var gender: String = "",
     var email: String = "",
     var payments: ArrayList<PaymentEntity.Payment> = ArrayList(),
-    var weeklyBudget: Double = 0.0,
-    var monthlyBudget: Double = 0.0
+    var budget: Double = 0.0,
+    var budgetType: String = ""
 )
