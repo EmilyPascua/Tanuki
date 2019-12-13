@@ -53,10 +53,12 @@ class ChatFragment : Fragment() {
             val type: String = message
             val payment: Double = 6.75
             val isBill: Boolean = false
+            val userCurrentBudget = 32.44
+            val difference = userCurrentBudget - payment
             val newAmount: PaymentEntity.Payment =
                 PaymentEntity.Payment(0, Date(date.year,date.month,date.day), payment, type, R.drawable.celebration_80, R.color.medium_blue,isBill)
             val yourMessage = "You made a payment of " + newAmount.type
-            val tanukiResponse = "TANULKI : This is a reply."
+            val tanukiResponse = "TANULKI : After your spendings, you have " + difference + " left for this month."
             messageResponse[0] = yourMessage
             messageResponse[1] = tanukiResponse
             messages.add(messageResponse)
