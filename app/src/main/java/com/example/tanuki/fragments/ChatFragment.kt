@@ -10,9 +10,23 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.tanuki.R
 import com.google.android.material.tabs.TabLayout
 import android.view.MenuInflater
+import android.widget.Button
+import android.widget.EditText
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.tanuki.adapter.ChatAdapter
+import com.example.tanuki.adapter.FeedAdapter
+import com.example.tanuki.model.PaymentEntity
+import com.example.tanuki.utils.Data
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class ChatFragment : Fragment() {
+    private lateinit var submit: Button
+    private lateinit var chatMessage: EditText
+    private lateinit var chatList: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -24,10 +38,32 @@ class ChatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_chat, container, false)
-//        val textView: TextView = root.findViewById(R.id.text_home)
-//        homeViewModel.text.observe(this, Observer {
-//            textView.text = it
-//        })
+        val messages = ArrayList<Array<String>>()
+        val messageResponse = arrayOf("Message","Response")
+
+        submit = root.findViewById(R.id.submit_button)
+        chatMessage = root.findViewById(R.id.chat_message)
+        chatList = root.findViewById(R.id.chat_list)
+
+        chatList.layoutManager = LinearLayoutManager(context)
+
+        submit.setOnClickListener {
+            val date: Date = Date()
+            val message: String = chatMessage.text.toString()
+            val type: String = "Test"
+            val payment: Double = 6.75
+            val isBill: Boolean = false
+            val newAmount: PaymentEntity.Payment =
+                PaymentEntity.Payment(0, Date(date.year,date.month,date.day), payment, type, R.drawable.celebration_80, R.color.medium_blue,isBill)
+            val yourMessage = "You made a payment of " + newAmount.payment
+            val tanukiResponse = "TANULKI : This is a reply."
+            messageResponse[0] = yourMessage
+            messageResponse[1] = tanukiResponse
+            messages.add(messageResponse)
+            Collections.reverse(messages)
+            chatList.adapter = ChatAdapter(messages)
+
+        }
         return root
     }
 
