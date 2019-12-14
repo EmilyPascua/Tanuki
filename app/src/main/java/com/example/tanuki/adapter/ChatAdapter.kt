@@ -35,14 +35,14 @@ class ChatAdapter(private val payments: ArrayList<Array<String>>) :
 
     class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(bill: Array<String>) {
-            val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+            val sdf = SimpleDateFormat("dd/M/yyyy")
             val currentDate = sdf.format(Date())
 
             itemView.chat_message.text = bill[0]
             itemView.chat_date.text =currentDate.toString()
 
             itemView.tanuki_repsonse.text = bill[1]
-            itemView.chat_date.text = currentDate.toString()
+            itemView.tanuki_response_date.text = currentDate.toString()
         }
     }
 }

@@ -18,6 +18,7 @@ import com.example.tanuki.adapter.ChatAdapter
 import com.example.tanuki.adapter.FeedAdapter
 import com.example.tanuki.model.PaymentEntity
 import com.example.tanuki.utils.Data
+import java.lang.NumberFormatException
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -74,28 +75,30 @@ class ChatFragment : Fragment() {
 //            }
 
             val (digits, notDigits) = message.partition { it.isDigit() }
-            println(digits)
-            println(notDigits)
-
-            digits.toDouble()
 
             var tanukiResponse: String = ""
-            if(notDigits.contains("food")){
-                type = "food"
-                tanukiResponse = tanukiResponseFood
-            } else if (notDigits.contains("travel")){
-                type = "travel"
-                tanukiResponse = tanukiResponseTravel
-            } else if (notDigits.contains("groceries")){
-                type = "groceries"
-                tanukiResponse = tanukiResponseGroceries
-            } else if (notDigits.contains("other")){
-                type = "other"
-                tanukiResponse = tanukiResponseOther
+            var yourMessage = ""
+            try{
+                digits.toDouble()
+                if(notDigits.contains("food")){
+                    type = "food"
+                    tanukiResponse = tanukiResponseFood
+                } else if (notDigits.contains("travel")){
+                    type = "travel"
+                    tanukiResponse = tanukiResponseTravel
+                } else if (notDigits.contains("groceries")){
+                    type = "groceries"
+                    tanukiResponse = tanukiResponseGroceries
+                } else if (notDigits.contains("other")){
+                    type = "other"
+                    tanukiResponse = tanukiResponseOther
+                }
+                val yourMessage = "You made a payment of $" + digits + " on " + type +"."
+                tanukiResponse
+            }catch (e: NumberFormatException){
+                tanukiResponse = "Sorry, I didn't understand that. Can you format your message as \"\$Amount on type\"."
+                yourMessage = message
             }
-
-            val yourMessage = "You made a payment of $" + digits + " on " + type
-            tanukiResponse
             messageResponse[0] = yourMessage
             messageResponse[1] = tanukiResponse
             messages.add(messageResponse)
