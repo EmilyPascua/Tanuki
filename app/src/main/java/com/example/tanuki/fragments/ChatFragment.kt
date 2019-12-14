@@ -28,6 +28,11 @@ class ChatFragment : Fragment() {
     private lateinit var chatList: RecyclerView
     private var messages = ArrayList<Array<String>>()
 
+    val tanukiResponseFood: String = ("Consider doing some meal prep")
+    val tanukiResponseTravel: String = ("You know there's MetroLink, Right?")
+    val tanukiResponseGroceries: String = ("Ooo... Doing some cooking tonight?")
+    val tanukiResponseOther: String = ("Alrighty!")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -46,19 +51,51 @@ class ChatFragment : Fragment() {
 
         chatList.layoutManager = LinearLayoutManager(context)
 
+//      food -> save a bit, do meal prep
+//      travel -> you know theres metrolink right
+//      groceries ->
+//      Other -> your wallet is gonna feel this one
         submit.setOnClickListener {
             val date: Date = Date()
             val messageResponse = arrayOf("Message","Response")
             val message: String = chatMessage.text.toString()
-            val type: String = message
-            val payment: Double = 6.75
+            var type: String = message
+            val payment: Double = 0.0
             val isBill: Boolean = false
-            val userCurrentBudget = 32.44
-            val difference = userCurrentBudget - payment
             val newAmount: PaymentEntity.Payment =
-                PaymentEntity.Payment(0, Date(date.year,date.month,date.day), payment, type, R.drawable.celebration_80, R.color.medium_blue,isBill)
-            val yourMessage = "You made a payment of " + newAmount.type
-            val tanukiResponse = "TANULKI : After your spendings, you have " + difference + " left for this month."
+                PaymentEntity.Payment(0.toString(), Date(date.year,date.month,date.day), payment, type, R.drawable.celebration_80, R.color.medium_blue,isBill)
+
+            val enteredAmount: String = ""
+//            for (c in message) {
+//                if (c.isDigit()){
+////                    if (c == ".")
+//                    payment
+//                }
+//            }
+
+            val (digits, notDigits) = message.partition { it.isDigit() }
+            println(digits)
+            println(notDigits)
+
+            digits.toDouble()
+
+            var tanukiResponse: String = ""
+            if(notDigits.contains("food")){
+                type = "food"
+                tanukiResponse = tanukiResponseFood
+            } else if (notDigits.contains("travel")){
+                type = "travel"
+                tanukiResponse = tanukiResponseTravel
+            } else if (notDigits.contains("groceries")){
+                type = "groceries"
+                tanukiResponse = tanukiResponseGroceries
+            } else if (notDigits.contains("other")){
+                type = "other"
+                tanukiResponse = tanukiResponseOther
+            }
+
+            val yourMessage = "You made a payment of $" + digits + " on " + type
+            tanukiResponse
             messageResponse[0] = yourMessage
             messageResponse[1] = tanukiResponse
             messages.add(messageResponse)

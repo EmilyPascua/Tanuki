@@ -9,6 +9,8 @@ import com.example.tanuki.model.FeedModel
 import com.example.tanuki.model.PaymentEntity
 import kotlinx.android.synthetic.main.message_item.view.*
 import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ChatAdapter(private val payments: ArrayList<Array<String>>) :
     RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
@@ -33,12 +35,14 @@ class ChatAdapter(private val payments: ArrayList<Array<String>>) :
 
     class ChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(bill: Array<String>) {
-            itemView.chat_username.text = "UserName"
+            val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+            val currentDate = sdf.format(Date())
+
             itemView.chat_message.text = bill[0]
-            itemView.chat_date.text = "Date"
+            itemView.chat_date.text =currentDate.toString()
 
             itemView.tanuki_repsonse.text = bill[1]
-            itemView.chat_date.text = "Date"
+            itemView.chat_date.text = currentDate.toString()
         }
     }
 }
