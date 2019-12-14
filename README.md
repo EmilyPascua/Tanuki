@@ -43,8 +43,6 @@ The third tab is a calendar containing all personal payments and objectives. Pos
 
 Chat-like spending feature with automated advice.
 
-## Tanuki's Inner Workings (Project Architecture)
-
 # Tasks & Assignments
 
 ## Emily Pascua
