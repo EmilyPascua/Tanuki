@@ -71,7 +71,7 @@ Chat-like spending feature with automated advice.
 * Researched and Attempted to use Pusher (Chat API)
 * Created logic for messages produced
 
-## Conan
+## Conan Yee
 * Created Public Activity Feed
 
 # Credits
@@ -80,4 +80,4 @@ Logo wasn't made by us, it was found on google.
 
 ### Contributors
 
-Emily Pascua, Ingelbert Figueroa, Feng You, Conan, Rafael Mendoza
+Emily Pascua, Ingelbert Figueroa, Feng You, Conan Yee, Rafael Mendoza
